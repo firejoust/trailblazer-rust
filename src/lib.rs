@@ -1,3 +1,6 @@
+mod world;
+mod js;
+
 use neon::prelude::*;
 
 fn hello(mut cx: FunctionContext) -> JsResult<JsString> {

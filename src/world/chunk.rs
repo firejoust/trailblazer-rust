@@ -1,4 +1,4 @@
-use crate::block::Block;
+use crate::world::block::Block;
 
 struct BitArray {
     data: Vec<u32>,
