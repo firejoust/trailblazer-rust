@@ -16,7 +16,7 @@ use neon::prelude::{
 
 
 /*
-**  JS Object to Rust Struct (BitArray)
+**  BitArray to struct
 */
 
 impl JsStruct for BitArray {
@@ -35,7 +35,7 @@ impl JsStruct for BitArray {
 }
 
 /*
-**  JS Object to Rust Struct (ChunkSection)
+**  ChunkSection to struct
 */
 
 impl JsStruct for ChunkSection {
@@ -48,21 +48,8 @@ impl JsStruct for ChunkSection {
     }
 }
 
-impl JsStructVec<ChunkSection> for JsArray {
-    fn from_arr(cx: &mut FunctionContext, arr: &JsArray) -> Vec<ChunkSection> {
-        let len: Handle<JsNumber> = arr.get(cx, "length").unwrap();
-        let len = len.value(cx) as usize;
-        let mut sections: Vec<ChunkSection> = vec![];
-        for i in 0..len {
-            let element: Handle<JsObject> = arr.get(cx, i as u32).unwrap();
-            sections[i] = ChunkSection::from_obj(cx, &element);
-        }
-        sections
-    }
-}
-
 /*
-**  JS Object to Rust Struct (ChunkColumn)
+**  ChunkColumn to struct
 */
 
 impl JsStruct for ChunkColumn {
@@ -77,3 +64,27 @@ impl JsStruct for ChunkColumn {
         }
     }
 }
+
+/*
+**  Object arrays to struct vectors
+*/
+
+macro_rules! impl_js_obj_arr {
+    ($t:tt) => {
+        impl JsStructVec<$t> for JsArray {
+            fn from_arr(cx: &mut FunctionContext, arr: &JsArray) -> Vec<$t> {
+                let len: Handle<JsNumber> = arr.get(cx, "length").unwrap();
+                let len = len.value(cx) as usize;
+                let mut list: Vec<$t> = vec![];
+                for i in 0..len {
+                    let element: Handle<JsObject> = arr.get(cx, i as u32).unwrap();
+                    list[i] = $t::from_obj(cx, &element);
+                }
+                list
+            }
+        }
+    }
+}
+
+impl_js_obj_arr!(ChunkSection);
+impl_js_obj_arr!(ChunkColumn);
