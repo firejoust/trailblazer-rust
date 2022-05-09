@@ -23,8 +23,8 @@ impl JsStruct for BitArray {
     fn from_obj(cx: &mut FunctionContext, obj: &JsObject) -> Self {
         let data: Handle<JsTypedArray<u32>> = obj.get(cx, "data").unwrap();
         let capacity: Handle<JsNumber> = obj.get(cx, "capacity").unwrap();
-        let bits_per_value: Handle<JsNumber> = obj.get(cx, "bits_per_value").unwrap();
-        let value_mask: Handle<JsNumber> = obj.get(cx, "value_mask").unwrap();
+        let bits_per_value: Handle<JsNumber> = obj.get(cx, "bitsPerValue").unwrap();
+        let value_mask: Handle<JsNumber> = obj.get(cx, "valueMask").unwrap();
         Self {
             data: data.to_int_vec(cx),
             capacity: capacity.to_int(cx),
@@ -40,9 +40,10 @@ impl JsStruct for BitArray {
 
 impl JsStruct for ChunkSection {
     fn from_obj(cx: &mut FunctionContext, obj: &JsObject) -> Self {
+        let data: Handle<JsObject> = obj.get(cx, "data").unwrap();
         let palette: Handle<JsTypedArray<u32>> = obj.get(cx, "palette").unwrap();
         Self {
-            data: BitArray::from_obj(cx, obj),
+            data: BitArray::from_obj(cx, &data),
             palette: palette.to_int_vec(cx)
         }
     }
@@ -78,7 +79,7 @@ macro_rules! impl_js_obj_arr {
                 let mut list: Vec<$t> = vec![];
                 for i in 0..len {
                     let element: Handle<JsObject> = arr.get(cx, i as u32).unwrap();
-                    list[i] = $t::from_obj(cx, &element);
+                    list.push($t::from_obj(cx, &element));
                 }
                 list
             }

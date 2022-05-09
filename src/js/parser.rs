@@ -1,10 +1,4 @@
-use neon::prelude::{
-    Handle,
-    FunctionContext,
-    Object,
-    JsTypedArray,
-    JsNumber, JsObject, JsArray
-};
+use super::*;
 
 pub trait JsInt<T> {
     fn to_int(&self, cx: &mut FunctionContext) -> T;
@@ -36,7 +30,7 @@ macro_rules! impl_js_array_type {
                 for i in 0..len {
                     let jsval: Handle<JsNumber> = self.get(cx, i as u32).unwrap();
                     let jsval = jsval.value(cx) as $t;
-                    arr[i] = jsval;
+                    arr.push(jsval);
                 }
                 arr
             }

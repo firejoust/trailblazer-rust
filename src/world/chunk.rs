@@ -1,5 +1,6 @@
-use crate::world::block::Block;
+use super::block::Block;
 
+#[derive(Debug)]
 pub struct BitArray {
     pub data: Vec<u32>,
     pub capacity: u32,
@@ -7,11 +8,13 @@ pub struct BitArray {
     pub value_mask: u32
 }
 
+#[derive(Debug)]
 pub struct ChunkSection {
     pub data: BitArray,
     pub palette: Vec<u32>,
 }
 
+#[derive(Debug)]
 pub struct ChunkColumn {
     pub x: i32,
     pub z: i32,
