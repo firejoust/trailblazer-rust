@@ -1,19 +1,6 @@
-
-use super::parser::{
-    JsIntVec, JsInt, JsStruct, JsStructVec
-};
-
-use crate::world::chunk::{
-    BitArray, ChunkSection, ChunkColumn
-};
-
-use neon::prelude::{
-    Handle,
-    FunctionContext,
-    Object,
-    JsObject, JsTypedArray, JsArray, JsNumber
-};
-
+use super::parser::{ JsIntVec, JsInt, JsStruct, JsStructVec };
+use super::world::chunk::{ BitArray, ChunkSection, ChunkColumn };
+use neon::prelude::*;
 
 /*
 **  BitArray to struct
