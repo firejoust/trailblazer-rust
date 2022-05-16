@@ -28,7 +28,7 @@ impl JsStruct for BitArray {
 impl JsStruct for ChunkSection {
     fn from_obj(cx: &mut FunctionContext, obj: &JsObject) -> Self {
         let data: Handle<JsObject> = obj.get(cx, "data").unwrap();
-        let palette: Handle<JsTypedArray<u32>> = obj.get(cx, "palette").unwrap();
+        let palette: Handle<JsTypedArray<u16>> = obj.get(cx, "palette").unwrap();
         Self {
             data: BitArray::from_obj(cx, &data),
             palette: palette.to_int_vec(cx)

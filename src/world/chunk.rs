@@ -1,5 +1,4 @@
-// chunk constants
-const GLOBAL_PALETTE_BITS: u32 = 16;
+const SECTION_BITS: u32 = 16;
 const SECTION_CAPACITY: u32 = 4096;
 
 #[derive(Debug)]
@@ -13,11 +12,11 @@ pub struct BitArray {
 #[derive(Debug)]
 pub struct ChunkSection {
     pub data: BitArray,
-    pub palette: Vec<u32>,
+    pub palette: Vec<u16>,
 }
 
-impl Into<[[[u32; 16]; 16]; 16]> for &ChunkSection {
-    fn into(self) -> [[[u32; 16]; 16]; 16] {
+impl Into<[[[u16; 16]; 16]; 16]> for &ChunkSection {
+    fn into(self) -> [[[u16; 16]; 16]; 16] {
         // single valued palette
         if self.data.capacity == 1 {
             // need to clear 0s, reverse bit order (least - most sigbit), & convert to decimal
@@ -25,7 +24,7 @@ impl Into<[[[u32; 16]; 16]; 16]> for &ChunkSection {
         }
         // validate chunk data
         assert!(self.data.capacity == SECTION_CAPACITY);
-        assert!(self.data.bits_per_value <= GLOBAL_PALETTE_BITS);
+        assert!(self.data.bits_per_value <= SECTION_BITS);
         // assert!(/* old buffer & new buffer are iterable */);
         // initialise references to old/new buffers
         let bb = &mut self.data.data.clone();
@@ -47,7 +46,7 @@ impl Into<[[[u32; 16]; 16]; 16]> for &ChunkSection {
             let part = long << 1;
             // non 0 bit, append to new buffer
             if part >> 1 < long {
-                db[d] += u32::pow(2, self.data.bits_per_value - n); // insig -> sig bit
+                db[d] += u16::pow(2, self.data.bits_per_value - n); // insig -> sig bit
             }
             bb[b] = part;
 
@@ -65,11 +64,25 @@ impl Into<[[[u32; 16]; 16]; 16]> for &ChunkSection {
             }
         }
 
-        // indirect palette
+        // indirect palette conversion
         if self.palette.len() > 0 {
-
+            for i in 0..dl {
+                db[i] = self.palette[db[i] as usize];
+            }
         }
-        todo!()
+
+        // order blockstates by axis
+        let mut cb = [[[0; 16]; 16]; 16];
+        let mut c = 0;
+        for x in 0..16 {
+            for y in 0..16 {
+                for z in 0..16 {
+                    cb[x][y][z] = db[c];
+                    c += 1;
+                }
+            }
+        }
+        cb
     }
 }
 
@@ -82,7 +95,7 @@ pub struct ChunkColumn {
 
 struct ChunkGrid {
     pub position: [i32; 3],
-    pub blocks: [[[u32; 16]; 16]; 16]
+    pub blocks: [[[u16; 16]; 16]; 16]
 }
 
 impl Into<Vec<ChunkGrid>> for &ChunkColumn {
