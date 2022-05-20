@@ -11,12 +11,12 @@ impl JsStruct for BitArray {
         let data: Handle<JsTypedArray<u32>> = obj.get(cx, "data").unwrap();
         let capacity: Handle<JsNumber> = obj.get(cx, "capacity").unwrap();
         let bits_per_value: Handle<JsNumber> = obj.get(cx, "bitsPerValue").unwrap();
-        let value_mask: Handle<JsNumber> = obj.get(cx, "valueMask").unwrap();
+        let spanned: Handle<JsBoolean> = obj.get(cx, "spanned").unwrap();
         Self {
             data: data.to_int_vec(cx),
             capacity: capacity.to_int(cx),
             bits_per_value: bits_per_value.to_int(cx),
-            value_mask: value_mask.to_int(cx)
+            spanned: spanned.value(cx)
         }
     }
 }
