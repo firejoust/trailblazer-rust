@@ -1,5 +1,5 @@
 use super::parser::{ JsIntVec, JsInt, JsStruct, JsStructVec };
-use super::world::chunk::{ BitArray, ChunkSection, ChunkColumn };
+use super::world::container::{ BitArray, ChunkSection, ChunkColumn };
 use neon::prelude::*;
 
 /*

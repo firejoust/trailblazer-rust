@@ -1,8 +1,9 @@
 mod world;
 mod js;
 
+use world::container::{ ChunkColumn };
+use world::chunk::{ ChunkGrid };
 use js::parser::JsStructVec;
-use world::chunk::{ ChunkColumn, ChunkGrid };
 use neon::prelude::*;
 
 fn load_buffer(mut cx: FunctionContext) -> JsResult<JsUndefined> {
