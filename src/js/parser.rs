@@ -1,4 +1,12 @@
-use super::*;
+use neon::prelude::{
+    FunctionContext,
+    JsTypedArray,
+    JsArray,
+    JsNumber,
+    JsObject,
+    Object,
+    Handle
+};
 
 pub trait JsInt<T> {
     fn to_int(&self, cx: &mut FunctionContext) -> T;

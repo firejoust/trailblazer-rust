@@ -1,7 +1,24 @@
-use super::parser::{ JsIntVec, JsInt, JsStruct, JsStructVec };
-use super::world::container::{ BitArray, ChunkSection, ChunkColumn };
-use neon::prelude::*;
-
+use super::parser::{
+    JsIntVec,
+    JsInt,
+    JsStruct,
+    JsStructVec
+};
+use super::world::container::{
+    BitArray,
+    ChunkSection,
+    ChunkColumn
+};
+use neon::prelude::{
+    FunctionContext,
+    JsTypedArray,
+    JsArray,
+    JsBoolean,
+    JsNumber,
+    JsObject,
+    Object,
+    Handle
+};
 /*
 **  BitArray to struct
 */
@@ -58,7 +75,7 @@ impl JsStruct for ChunkColumn {
 */
 
 macro_rules! impl_js_obj_arr {
-    ($t:tt) => {
+    ($t:ident) => {
         impl JsStructVec<$t> for JsArray {
             fn from_arr(cx: &mut FunctionContext, arr: &JsArray) -> Vec<$t> {
                 let len: Handle<JsNumber> = arr.get(cx, "length").unwrap();
