@@ -1,4 +1,4 @@
-use super::parser::{
+use super::primative::{
     JsIntVec,
     JsInt,
     JsStruct,
@@ -19,8 +19,14 @@ use neon::prelude::{
     Object,
     Handle
 };
+
+//
+//  Convert abstracted JS objects to their structural equivalent 
+//  with Neon type bindings
+//
+
 /*
-**  BitArray to struct
+**  BitArray
 */
 
 impl JsStruct for BitArray {
@@ -39,7 +45,7 @@ impl JsStruct for BitArray {
 }
 
 /*
-**  ChunkSection to struct
+**  ChunkSection
 */
 
 impl JsStruct for ChunkSection {
@@ -54,7 +60,7 @@ impl JsStruct for ChunkSection {
 }
 
 /*
-**  ChunkColumn to struct
+**  ChunkColumn
 */
 
 impl JsStruct for ChunkColumn {
@@ -71,7 +77,7 @@ impl JsStruct for ChunkColumn {
 }
 
 /*
-**  Object arrays to struct vectors
+**  Arrays of Objects (ChunkSections, ChunkColumns)
 */
 
 macro_rules! impl_js_obj_arr {

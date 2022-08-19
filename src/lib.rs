@@ -1,5 +1,6 @@
 mod world;
 mod js;
+mod physics;
 
 use world::container::{
     get_world_grid,
@@ -10,7 +11,7 @@ use world::chunk::{
     WorldGrid,
     ChunkMap
 };
-use js::parser::{
+use js::primative::{
     JsStructVec
 };
 use neon::prelude::{

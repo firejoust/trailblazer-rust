@@ -25,7 +25,7 @@ pub trait JsStructVec<T: JsStruct> {
 }
 
 /*
-//  JS TypedArray to Rust Vector
+//  TypedArray
 */
 
 macro_rules! impl_js_array_type {
@@ -57,7 +57,7 @@ impl_js_array_type!(i16);
 impl_js_array_type!(i8);
 
 /*
-//  JS Number to Rust Integer
+//  Number
 */
 
 macro_rules! impl_js_number {
