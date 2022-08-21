@@ -22,7 +22,6 @@ use neon::prelude::{
 
 //
 //  Convert abstracted JS objects to their structural equivalent 
-//  with Neon type bindings
 //
 
 /*

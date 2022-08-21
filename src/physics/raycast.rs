@@ -2,7 +2,7 @@ use super::{
     Face,
     Vec3,
     Line,
-    Cube
+    Rect
 };
 
 fn vec3_face(a: Vec3, b: Vec3) -> Face {
@@ -56,11 +56,14 @@ fn line_scaled_value(line: &Line, axis: usize, constant: f32) -> [Option<f32>; 3
     return vec3
 }
 
-fn cube_intercept(cube: &Cube, line: &Line) -> Option<Vec3> {
+fn rect_intercept(rect: &Rect, line: &Line) -> Option<Vec3> {
+    // only use visible faces
     for f in vec3_face(line[0], line[1]) {
         let i = usize::from(f);
+        
         for j in 0..3 {
-            let sequence = line_scaled_value(line, j, cube[i][j]);
+            let sequence = line_scaled_value(line, j, rect[i][j]);
+            let mut valid = true;
 
             // we have an intercept
             if sequence[0].is_some()
@@ -70,17 +73,19 @@ fn cube_intercept(cube: &Cube, line: &Line) -> Option<Vec3> {
                 for k in 0..3 {
                     let constant = sequence[k].unwrap();
                     
-                    // intercept within cube bounds
-                    if cube[0][k] <= constant && constant <= cube[1][k]
-                    || cube[1][k] <= constant && constant <= cube[0][k]
-                    {
-                        return Some([
-                            sequence[0].unwrap(),
-                            sequence[1].unwrap(),
-                            sequence[2].unwrap()
-                        ])
-                    }
+                    // intercept within rect bounds
+                    valid = valid && (
+                        rect[0][k] <= constant && constant <= rect[1][k]
+                    ||  rect[1][k] <= constant && constant <= rect[0][k]
+                    )
+                }
 
+                if valid {
+                    return Some([
+                        sequence[0].unwrap(),
+                        sequence[1].unwrap(),
+                        sequence[2].unwrap()
+                    ])
                 }
             }
         }
