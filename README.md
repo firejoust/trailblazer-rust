@@ -2,7 +2,7 @@
 Trailblazer - Pathfinding module for Minecraft (NPM/Neon)
 
 Roadmap:
-  - create a JSON to Rust compatibility layer for runtime
+  - create a JSON to Rust compatibility layer during runtime
   - parse chunk data directly from prismarine-chunk
   - detect hitbox collision and line intersection with blocks
   - simulate player physics and block collision
