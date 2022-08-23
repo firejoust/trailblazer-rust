@@ -7,7 +7,6 @@ Roadmap:
 > Player physics and velocity handling
 > Pathfinding???
 > Movement concurrency??? (real time pathfinding)
-and more!
 
 Pathfinding (Raycast):
 - linear & parabolic raycasting will elicit nodes
@@ -16,7 +15,7 @@ Pathfinding (Raycast):
 - a node's path will be replaced if the new path has a lower cost
 - when conditions are met, a destination node and path are chosen
 ???
-- destination nodes are saved in a backlog (only keeping a select number)
-- nodes have a parent/child address with the lowest cost
-- cost-calculation is done for destination nodes only (other nodes reference the cost)
+- a path will have a "header" node, which is responsible for determining where it starts
+- the header node will destroy its path when too far from the current node
+- new paths will be created a few steps ahead of the current node
 ```
