@@ -2,20 +2,20 @@
 Trailblazer - Pathfinding module for Minecraft (NPM/Neon)
 
 Roadmap:
-> Parsing of chunk data from minecraft-protocol
-> Block detection with raycasting & hitbox collision
-> Player physics and velocity handling
-> Pathfinding???
-> Movement concurrency??? (real time pathfinding)
+- create a runtime JSON to Rust compatibility layer
+- parse chunk data directly from prismarine-chunk
+- detect hitbox collision and block line intersection
+- simulate player physics and block collision
+- implement non-specific pathfinding algorithm
 
-Pathfinding (Raycast):
+Pathfinding:
 - linear & parabolic raycasting will elicit nodes
-- nodes are created from the block where the rays vertically collide
+- the point of vertical collision determines the next node
 - a path formed by consecutive rays will accumulate a cost
-- a node's path will be replaced if the new path has a lower cost
 - when conditions are met, a destination node and path are chosen
-???
-- a path will have a "header" node, which is responsible for determining where it starts
-- the header node will destroy its path when too far from the current node
-- new paths will be created a few steps ahead of the current node
+
+Movement:
+- the start position of a path will be determined by the "header" node
+- if the header node is too many steps away from the current node, it will destroy its path
+- new paths will be initialised a few steps ahead of the current node
 ```
