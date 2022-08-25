@@ -20,9 +20,9 @@ Movement:
   - new paths will be initialised a few steps ahead of the current node
 
 Cost:
-  - The cost of the new path can only be compared to the old path if they share the same node
-  - only the cost of the current path and new path will be calculated simultaneously
-  - Cost is influenced by both distance from the destination and impeded movement
+  - distance and impeded movement influence a node's cost
+  - cost is not calculated for individual nodes, but the whole path
+  - the cost of the new and old path are compared by the same node
 
 Raycasting:
   - Movement can be either linear or parabolic
