@@ -21,12 +21,19 @@ Movement:
 
 Cost:
   - The cost of the new path can only be compared to the old path if they share the same node
-  - At one time, only the cost of the current path and new path will be calculated
-  - Cost is influenced by both distance and movement factors
-  
+  - only the cost of the current path and new path will be calculated simultaneously
+  - Cost is influenced by both distance from the destination and impeded movement
+
+Raycasting:
+  - Movement can be either linear or parabolic
+  - Each ray will be bridged together by a sequence of vectors
+  - Physics "iterators" are responsible for producing these vectors (given a yaw and pitch angle)
+  - The order of what raycast will be applied first is up to the developer
+
 Nodes:
   - node elicitation will be influenced by:
-  >   rotations: the amount of yaw rotations that are considered
-  >   threshold: the quantity of paths that can exist at one time
-  >   tolerance: maximum number of steps that unrestrict the threshold
+  >   rotations: the amount of yaw rotations that can be considered
+  >   threshold: the maximum quantity of paths that can exist simultaneously
+  >   tolerance: maximum number of steps that the threshold is unrestricted for
+  >   distance: how many steps ahead new paths can be made
 ```
