@@ -25,10 +25,9 @@ Cost:
   - the cost of the new and old path are compared by the same node
 
 Raycasting:
-  - Movement can be either linear or parabolic
-  - Each ray will be bridged together by a sequence of vectors
-  - Physics "iterators" are responsible for producing these vectors (given a yaw and pitch angle)
-  - The order of what raycast will be applied first is up to the developer
+  - each ray will be bridged together by a sequence of vectors
+  - the physics engine is used to produce these vectors (given a yaw and pitch angle)
+  - the order of what raycast will be applied first is defined by the developer
 
 Nodes:
   - node elicitation will be influenced by:
