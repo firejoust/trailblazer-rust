@@ -20,9 +20,9 @@ Movement:
   - new paths will be initialised a few steps ahead of the current node
 
 Cost:
-  - distance and impeded movement influence a node's cost
-  - cost is not calculated for individual nodes, but the whole path
-  - the cost of the new and old path are compared by the same node
+  - yaw and impeded movement influence the "quality" of a path (0 to 1)
+  - cost is calculated by scaling distance by the quality factor
+  - the cost of the new and old path are compared from the same node
 
 Raycasting:
   - each ray will be bridged together by a sequence of vectors
