@@ -1,5 +1,5 @@
 ```
-Trailblazer - Pathfinding module for Minecraft (NPM/Neon)
+Trailblazer - Pathfinding engine for Minecraft (NodeJS Edition)
 
 Roadmap:
   - create a JSON to Rust compatibility layer during runtime
