@@ -18,6 +18,7 @@ Movement:
   - the start position of a path will be determined by the "header" node
   - if the header node is unreachable from the current node, its path will be destroyed
   - new paths will be initialised a few steps ahead of the current node
+  - when a new path is found, it will be appended to a node on the current path
 
 Cost:
   - yaw and impeded movement influence the "quality" of a path (0 to 1)
