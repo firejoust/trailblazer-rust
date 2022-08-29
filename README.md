@@ -21,8 +21,10 @@ Movement:
   - when a new path is found, it will be appended to a node on the current path
 
 Cost:
-  - yaw and impeded movement influence the "quality" of a path (0 to 1)
-  - cost is calculated by scaling distance by the quality factor
+  - "quality" determines which path should be prioritised before elicitation
+  - yaw and impeded movement to the next node influence the "quality" of a path
+  - "cost" determines which adjacent nodes to elicit from the current node
+  - a node's distance from the destination and raycast quantity influence the "cost"
   - the cost of the new and old path are compared from the same node
 
 Raycasting:
