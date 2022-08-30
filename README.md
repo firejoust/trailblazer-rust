@@ -46,8 +46,9 @@ Nodes:
 
 #### Misc Ideas
 ```
-The raycasting angle boundary is influenced by the velocity from the last node (Elicitation)
-Hitbox collisions with other blocks will influence the quality of the current path (Movement)
-Only paths above a certain quality threshold will be acceptable to follow (Pathfinding)
-A raycast only ends after vertical velocity is reset to 0 from a collision (Raycasting)
+The raycasting angle boundary is influenced by the velocity from the last node
+Hitbox collisions with other blocks will influence the quality of the current path
+Only paths above a certain quality threshold will be acceptable to follow
+A raycast only ends after vertical velocity is reset to 0 from a collision
+If the velocity is interrupted whilst traversing a path, all ongoing paths are terminated and the new node is determined from where the player lands
 ```
