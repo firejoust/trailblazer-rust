@@ -45,3 +45,12 @@ Nodes:
   >   tolerance: maximum number of steps that the threshold is unrestricted for
   >   distance: how many steps ahead new paths can be made
 ```
+
+#### Misc Ideas
+
+```
+The raycasting angle boundary is influenced by the velocity from the last node (Elicitation)
+Hitbox collisions with other blocks will influence the quality of the current path (Movement)
+Only paths above a certain quality threshold will be acceptable to follow (Pathfinding)
+A raycast only ends after vertical velocity is reset to 0 from a collision (Raycasting)
+```
