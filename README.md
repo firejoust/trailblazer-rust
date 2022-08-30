@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>Trailblazer (NodeJS Edition)</h1>
-  <p>An experimental pathfinding engine for Minecraft</p>
+  <h3>Trailblazer (NodeJS Edition)</h3>
+  <p>A pathfinding engine for Minecraft</p>
 </div>
 
 #### Overview
