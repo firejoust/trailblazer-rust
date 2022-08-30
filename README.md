@@ -1,6 +1,12 @@
-```
-Trailblazer - Pathfinding engine for Minecraft (NodeJS Edition)
+<div align="center">
+  <h1>Trailblazer (NodeJS Edition)</h1>
+  <p>The experimental pathfinding engine for Minecraft</p>
+  <p>Unfinished as of now, see "roadmap" in overview for a list of milestones</p>
+</div>
 
+#### Overview
+
+```
 Roadmap:
   - create a JSON to Rust compatibility layer during runtime
   - parse chunk data directly from prismarine-chunk
