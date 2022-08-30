@@ -1,11 +1,9 @@
 <div align="center">
   <h1>Trailblazer (NodeJS Edition)</h1>
-  <p>The experimental pathfinding engine for Minecraft</p>
-  <p>Unfinished as of now, see "roadmap" in overview for a list of milestones</p>
+  <p>An experimental pathfinding engine for Minecraft</p>
 </div>
 
 #### Overview
-
 ```
 Roadmap:
   - create a JSON to Rust compatibility layer during runtime
@@ -47,7 +45,6 @@ Nodes:
 ```
 
 #### Misc Ideas
-
 ```
 The raycasting angle boundary is influenced by the velocity from the last node (Elicitation)
 Hitbox collisions with other blocks will influence the quality of the current path (Movement)
