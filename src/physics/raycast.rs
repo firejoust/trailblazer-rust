@@ -1,27 +1,9 @@
-use super::{
-    Face,
-    Vec3,
-    Line,
-    Rect
-};
+use super::vec3::*;
 
-fn vec3_face(a: Vec3, b: Vec3) -> Face {
-    [
-        b[0] - a[0] < 0.0,
-        b[1] - a[1] < 0.0,
-        b[2] - a[2] < 0.0
-    ]
-}
+pub type Line = [Vec3; 2];
+pub type Rect = [Vec3; 2];
 
-fn vec3_diff(a: Vec3, b: Vec3) -> Vec3 {
-    [
-        b[0] - a[0],
-        b[1] - a[1],
-        b[2] - a[2]
-    ]
-}
-
-fn line_scaled_value(line: &Line, axis: usize, constant: f32) -> [Option<f32>; 3] {
+fn scaled_value(line: &Line, axis: usize, constant: f32) -> [Option<f32>; 3] {
     let mut vec3 = [None; 3];
     let offset;
 
@@ -62,7 +44,7 @@ fn rect_intercept(rect: &Rect, line: &Line) -> Option<Vec3> {
         let i = usize::from(f);
         
         for j in 0..3 {
-            let sequence = line_scaled_value(line, j, rect[i][j]);
+            let sequence = scaled_value(line, j, rect[i][j]);
             let mut valid = true;
 
             // we have an intercept
