@@ -46,9 +46,9 @@ Nodes:
 
 #### Misc Ideas
 ```
-The raycasting angle boundary is influenced by the velocity from the last node
-Hitbox collisions with other blocks will influence the quality of the current path
-Only paths above a certain quality threshold will be acceptable to follow
-A raycast only ends after vertical velocity is reset to 0 from a collision
-If the velocity is interrupted whilst traversing a path, all ongoing paths are terminated and the new node is determined from where the player lands
+- The raycasting angle boundary is influenced by the velocity from the last node
+- Hitbox collisions with other blocks will influence the quality of the current path
+- Only paths above a certain quality threshold will be acceptable to follow
+- A node's type is used for eliciting new nodes with differing movement configurations (Collision, Interrupt, etc...)
+- If the velocity is interrupted whilst traversing a path, all ongoing paths are terminated and the new node is determined from where the player lands
 ```
