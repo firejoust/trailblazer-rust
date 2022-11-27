@@ -3,6 +3,8 @@
   <p>A pathfinding engine for Minecraft</p>
 </div>
 
+# Archived 27/11/22, succeeded by mineflayer-pathfinder-rs
+
 #### Overview
 ```
 Roadmap:
